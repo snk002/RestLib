@@ -1,5 +1,5 @@
 # RestLib
-REST libruary based on OkHttp3
+REST library based on OkHttp3
 
 Connect to project:
 1. Add the JitPack repository to project-level build.gradle file
