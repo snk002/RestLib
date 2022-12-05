@@ -38,8 +38,8 @@ Usage with variuos return types:
 <pre>
 class DataRepository(private val api: SimpleRest) {
 	
-	suspend fun postData(submission: Request): SimpleResponse<PossibleResponses?> =
-		// here full path specified
+	suspend fun postData(submission: MyRequest): SimpleResponse&lt;PossibleResponses?&gt; =
+		// here is full path specified
 		api.post("https://domain.tld/api/submit", submission)
 			// different acceptable types based on HTTP response code
 			.addResponseType(200, RegularExpected::class.java)
