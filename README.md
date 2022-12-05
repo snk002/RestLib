@@ -34,3 +34,40 @@ class NewsRepository(private val api: SimpleRest) {
 		api.get("breaking").toFlow(15000)
 }
 </pre>
+Usage with variuos return types:
+<pre>
+class DataRepository(private val api: SimpleRest) {
+	
+	suspend fun postData(submission: Request): SimpleResponse<PossibleResponses?> =
+		// here full path specified
+		api.post("https://domain.tld/api/submit", submission)
+			// different acceptable types based on HTTP response code
+			.addResponseType(200, RegularExpected::class.java)
+			.addResponseType(208, PartialSuccess::class.java)
+			.addResponseType(400, DataError::class.java)
+			.addResponseType(500, ServerError::class.java).awaitResponse()
+}
+
+// it is possible to use Any but better way is mark all acceptable types by interface
+interface PossibleResponses
+
+data class RegularExpected(
+	val title: String,
+	val subtitle: String,
+	val value: Int
+) : PossibleResponses
+
+data class PartialSuccess(
+	val title: String,
+	val summary: String
+) : PossibleResponses
+
+data class DataError(
+	val summary: String,
+	val extra: Int
+) : PossibleResponses
+
+data class ServerError(
+	val code: Int
+) : PossibleResponses
+</pre>
