@@ -26,7 +26,7 @@ class NewsRepository(private val api: SimpleRest) {
 	}
   
 	// request list of items from specified page
-	suspend fun fetchNews(page: Int): List<NewsData>? =
+	suspend fun fetchNews(page: Int): List&lt;NewsData&gt;? =
 		api.get("news").addParam("page", page).awaitData()
     
 	// make flow with item, updated every 15 seconds
