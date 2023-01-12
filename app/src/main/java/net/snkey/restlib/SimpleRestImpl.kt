@@ -169,8 +169,7 @@ class SimpleRestImpl(
          * @param classOfT type assigned to response with specified HTTP code
          */
         fun <T> addResponseType(httpCode: Int, classOfT: Class<T>): SimpleBuilder {
-            if (httpCode != 200) responseTypes[httpCode] =
-                classOfT else throw IllegalArgumentException("Do not add type for default success here")
+            responseTypes[httpCode] = classOfT
             return this
         }
 

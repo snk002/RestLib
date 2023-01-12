@@ -34,7 +34,7 @@ class NewsRepository(private val api: SimpleRest) {
 		api.get("breaking").toFlow(15000)
 }
 </pre>
-Usage with variuos return types:
+Usage with various return types:
 <pre>
 class DataRepository(private val api: SimpleRest) {
 	
@@ -53,21 +53,11 @@ interface PossibleResponses
 
 data class RegularExpected(
 	val title: String,
-	val subtitle: String,
-	val value: Int
 ) : PossibleResponses
 
 data class PartialSuccess(
-	val title: String,
 	val summary: String
 ) : PossibleResponses
 
-data class DataError(
-	val summary: String,
-	val extra: Int
-) : PossibleResponses
-
-data class ServerError(
-	val code: Int
-) : PossibleResponses
+//etc...
 </pre>
