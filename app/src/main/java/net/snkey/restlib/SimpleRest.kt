@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Serge Korzhinsky (serge@snkey.net)
+ * Copyright (C) 2022, 2024 Serge Korzhinsky (sergius.nicolaus@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,47 +15,52 @@
  */
 package net.snkey.restlib
 
-import net.snkey.restlib.SimpleRestImpl.SimpleBuilder
-import net.snkey.restlib.model.Timeouts
-
 /**
  * SimpleRest interface with methods to setup get, post or head HTTP methods
  */
 interface SimpleRest {
 
     /**
-     * Sets timeouts for HTTP client. You can use this method only before sending first request!
-     *
-     * @param timeouts HTTP client timeout preferences
-     */
-    fun setTimeouts(timeouts: Timeouts)
-
-    /**
-     * Change basic URL for all requests from value specified in the main constructor
-     *
-     * @param baseUrl basic URL, used as base path for all requests
-     */
-    fun setBaseUrl(baseUrl: String)
-
-    /**
-     * Set the GET HTTP method and path
+     * Sets the GET HTTP method and path
      *
      * @param methodUrl method address. If not beginning from http then will added to baseUrl
      */
-    fun get(methodUrl: String): SimpleBuilder
+    fun get(methodUrl: String): SimpleRestImpl.SimpleBuilder
 
     /**
-     * Set the POST HTTP method, path and sent data
+     * Sets the POST HTTP method, path and sent data
      *
      * @param methodUrl method address. If not beginning from http then will added to baseUrl
      * @param data object of any type to passed as String or JSON (detect automatically)
      */
-    fun post(methodUrl: String, data: Any? = null): SimpleBuilder
+    fun post(methodUrl: String, data: Any? = null): SimpleRestImpl.SimpleBuilder
 
     /**
-     * Set the HEAD HTTP method and path
+     * Sets the PUT HTTP method, path and sent data
+     *
+     * @param methodUrl method address. If not beginning from http then will added to baseUrl
+     * @param data object of any type to passed as String or JSON (detect automatically)
+     */
+    fun put(methodUrl: String, data: Any? = null): SimpleRestImpl.SimpleBuilder
+
+    /**
+     * Sets the HEAD HTTP method and path
      *
      * @param methodUrl method address. If not beginning from http then will added to baseUrl
      */
-    fun head(methodUrl: String): SimpleBuilder
+    fun head(methodUrl: String): SimpleRestImpl.SimpleBuilder
+
+    /**
+     * Sets the DELETE HTTP method and path
+     *
+     * @param methodUrl method address. If not beginning from http then will added to baseUrl
+     */
+    fun delete(methodUrl: String): SimpleRestImpl.SimpleBuilder
+
+    /**
+     * Sets default HTTP hearers for all requests.
+     *
+     * @param headers map of headers where key is header's name and value is header's value
+     */
+    fun setHeaders(headers: Map<String, String>)
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Serge Korzhinsky (serge@snkey.net)
+ * Copyright (C) 2022, 2024 Serge Korzhinsky (sergius.nicolaus@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ data class Timeouts(
 
     private companion object {
 
-        const val DEFAULT_TIMEOUT = 10L
+        const val DEFAULT_TIMEOUT = 15L
         const val UNLIMITED_TIMEOUT = 0L
     }
 }
