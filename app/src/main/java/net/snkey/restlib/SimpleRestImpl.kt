@@ -227,7 +227,6 @@ class SimpleRestImpl(
             return body?.let {
                 try {
                     val bodyString: String = body.string()
-                    Gson().fromJson(bodyString, type)
                     body.close()
                     when (body.contentType()?.subtype ?: TYPE_TEXT) {
                         TYPE_TEXT -> if (type == String::class.java) bodyString as T else null
