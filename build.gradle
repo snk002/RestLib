@@ -1,4 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.23' apply false
+    id 'maven-publish'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.snk002'
+                artifactId = 'restlib'
+                version = '2.1.2'
+            }
+        }
+    }
 }
